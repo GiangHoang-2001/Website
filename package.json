@@ -3,20 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
+    "@babel/preset-react": "^7.26.3",
+    "@reduxjs/toolkit": "^1.8.6",
+    "@tanstack/react-query": "^4.17.1",
+    "@tanstack/react-query-devtools": "^4.17.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "antd": "^4.23.6",
+    "antd-table-saveas-excel": "^2.2.1",
+    "axios": "^1.2.0",
+    "dotenv": "^16.0.3",
+    "jwt-decode": "^3.1.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-html-table-to-excel": "^2.0.0",
+    "react-paypal-button-v2": "^2.6.3",
+    "react-redux": "^8.0.4",
+    "react-router-dom": "^6.30.0",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
+    "recharts": "^2.15.3",
+    "redux-persist": "^6.0.0",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "proxy": "http://localhost:3001",
+    "homepage": "."
   },
   "eslintConfig": {
     "extends": [
@@ -35,5 +56,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
