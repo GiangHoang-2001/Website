@@ -20,12 +20,16 @@ const HomePage = () => {
     const [loading, setLoading] = useState(false)
 
     const fetchProductAll = async (context) => {
+        const limit = context?.queryKey && context?.queryKey[1];
+        const search = context?.queryKey && context?.queryKey[2];
 
-        const limit = context?.queryKey && context?.queryKey[1]
-        const search = context?.queryKey && context?.queryKey[2]
+        console.log('Fetching products with limit:', limit, 'and search:', search);  // Log thêm để xem hàm có chạy
+
         const res = await ProductService.getAllProduct(search, limit);
+        console.log('Product Response:', res);  // Log dữ liệu API trả về
         return res;
     };
+
 
     const fetchAllTypeProduct = async () => {
         const res = await ProductService.getAllTypeProduct()
