@@ -22,6 +22,7 @@ const HomePage = () => {
     const fetchProductAll = async (context) => {
         const limit = context?.queryKey && context?.queryKey[1];
         const search = context?.queryKey && context?.queryKey[2];
+        console.log('API_URL:', process.env.REACT_APP_API_URL);
 
         console.log('Fetching products with limit:', limit, 'and search:', search);  // Log thêm để xem hàm có chạy
 
