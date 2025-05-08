@@ -6,6 +6,7 @@
 import { axiosJWT } from "./UserService";
 
 export const createOrder = async (data, access_token) => {
+    console.log('access_token', access_token);
     const res = await axiosJWT.post(`/api/order/create`, data, {
         headers: {
             token: `Bearer ${access_token}`,

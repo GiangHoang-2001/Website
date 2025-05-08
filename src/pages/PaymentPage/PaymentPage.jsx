@@ -21,7 +21,7 @@ import * as message from '../../components/Message/Message'
 import { updateUser } from '../../redux/slides/userSilde';
 import { useNavigate } from 'react-router-dom';
 import { removeAllOrderProduct } from '../../redux/slides/orderSlide';
-import { PayPalButton } from "react-paypal-button-v2";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import * as PaymentService from '../../services/PaymentService'
 
 const PaymentPage = () => {
@@ -281,35 +281,46 @@ const PaymentPage = () => {
                                         <span style={{ color: '#000', fontSize: '11px' }}>(Đã bao gồm VAT nếu có)</span>
                                     </span>
                                 </WrapperTotal>
-                                {payment === 'paypal' && sdkReady ? (
-                                    <div style={{ width: '320px' }}>
-                                        <PayPalButton
-                                            amount={(totalPriceMemo / 30000).toFixed(2)}
-                                            // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                                            onSuccess={onSuccessPaypal}
-                                            onError={() => {
-                                                alert('Error')
+                                {payment === 'paypal' && sdkReady && (
+                                    <PayPalScriptProvider options={{ "client-id": "<CLIENT_ID>" }}>
+                                        <PayPalButtons
+                                            style={{ layout: "vertical" }}
+                                            forceReRender={[totalPriceMemo]}
+                                            createOrder={(data, actions) => {
+                                                return actions.order.create({
+                                                    purchase_units: [{
+                                                        amount: {
+                                                            value: (totalPriceMemo / 30000).toFixed(2)
+                                                        },
+                                                    }],
+                                                });
+                                            }}
+                                            onApprove={(data, actions) => {
+                                                return actions.order.capture().then((details) => {
+                                                    onSuccessPaypal(details, data);
+                                                });
                                             }}
                                         />
-                                    </div>
-                                ) : (
-                                    <ButtonComponent
-                                        onClick={() => handleAddOrder()}
-                                        size={40}
-                                        styleButton={{
-                                            background: 'rgb(255, 57, 69)',
-                                            color: '#fff',
-                                            height: '48px',
-                                            width: '320px',
-                                            border: 'none',
-                                            borderRadius: '4px',
-                                            fontSize: '16px'
-                                        }}
-                                        textbutton={'Đặt hàng'}
-                                        styletextbutton={{ color: 'fff', fontSize: '15px', fontWeight: '700' }}
-                                    >
-                                    </ButtonComponent>
+                                    </PayPalScriptProvider>
                                 )}
+
+                                <ButtonComponent
+                                    onClick={() => handleAddOrder()}
+                                    size={40}
+                                    styleButton={{
+                                        background: 'rgb(255, 57, 69)',
+                                        color: '#fff',
+                                        height: '48px',
+                                        width: '320px',
+                                        border: 'none',
+                                        borderRadius: '4px',
+                                        fontSize: '16px'
+                                    }}
+                                    textbutton={'Đặt hàng'}
+                                    styletextbutton={{ color: 'fff', fontSize: '15px', fontWeight: '700' }}
+                                >
+                                </ButtonComponent>
+                                )
 
                             </div>
                         </WrapperRight>
