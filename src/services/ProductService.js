@@ -4,17 +4,21 @@ import { axiosJWT } from "./UserService";
 export const getAllProduct = async (search, limit) => {
     try {
         let res;
+        const baseURL = process.env.REACT_APP_API_URL;
+
         if (search?.length > 0) {
-            res = await axios.get(`/api/product/get-all?filter=name&filter=${search}&limit=${limit}`, { timeout: 10000 });
+            res = await axios.get(`${baseURL}/api/product/get-all?filter=name&filter=${search}&limit=${limit}`, { timeout: 10000 });
         } else {
-            res = await axios.get(`/api/product/get-all?limit=${limit}`);
+            res = await axios.get(`${baseURL}/api/product/get-all?limit=${limit}`, { timeout: 10000 });
         }
+
         return res?.data || { data: [] };
     } catch (error) {
         console.error('Lỗi API getAllProduct:', error);
         return { data: [] };
     }
 };
+
 
 export const getProductType = async (type, page, limit) => {
     if (type) {
