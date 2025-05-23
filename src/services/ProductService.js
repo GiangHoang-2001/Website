@@ -22,24 +22,24 @@ export const getAllProduct = async (search, limit) => {
 
 export const getProductType = async (type, page, limit) => {
     if (type) {
-        const res = await axios.get(`/api/product/get-all?filter=type&filter=${type}&limit=${limit}&page=${page}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/product/get-all?filter=type&filter=${type}&limit=${limit}&page=${page}`);
         return res.data
     }
 }
 
 
 export const createProduct = async (data) => {
-    const res = await axios.post(`/api/product/create`, data)
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/product/create`, data)
     return res.data;
 }
 
 export const getDetailsProduct = async (id) => {
-    const res = await axios.get(`/api/product/get-details/${id}`)
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/product/get-details/${id}`)
     return res.data;
 }
 
 export const updateProduct = async (id, data, access_token) => {
-    const res = await axiosJWT.put(`/api/product/update/${id}`, data, {
+    const res = await axiosJWT.put(`${process.env.REACT_APP_API_URL}/api/product/update/${id}`, data, {
         headers: {
             token: `Bearer ${access_token}`,
         }
@@ -48,7 +48,7 @@ export const updateProduct = async (id, data, access_token) => {
 }
 
 export const deleteProduct = async (id, access_token) => {
-    const res = await axiosJWT.delete(`/api/product/delete/${id}`, {
+    const res = await axiosJWT.delete(`${process.env.REACT_APP_API_URL}/api/product/delete/${id}`, {
         headers: {
             token: `Bearer ${access_token}`,
         }
@@ -57,7 +57,7 @@ export const deleteProduct = async (id, access_token) => {
 }
 
 export const deleteManyProduct = async (data, access_token) => {
-    const res = await axiosJWT.post(`/api/product/delete-many`, data, {
+    const res = await axiosJWT.post(`${process.env.REACT_APP_API_URL}/api/product/delete-many`, data, {
         headers: {
             token: `Bearer ${access_token}`,
         }
@@ -66,6 +66,6 @@ export const deleteManyProduct = async (data, access_token) => {
 }
 
 export const getAllTypeProduct = async () => {
-    const res = await axios.get(`/api/product/get-all-type`)
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/product/get-all-type`)
     return res.data;
 }
