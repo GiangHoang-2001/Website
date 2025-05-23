@@ -356,8 +356,8 @@ const AdminProduct = () => {
             dataIndex: 'action',
             render: () => (
                 <div>
-                    <DeleteOutlined style={{ color: 'red', fontSize: '30px', cursor: 'pointer' }} onClick={() => setIsModalOpenDelete(true)} />
-                    <EditOutlined style={{ color: 'red', fontSize: '30px', cursor: 'pointer' }} onClick={handleDetailsProduct} />
+                    <DeleteOutlined style={{ color: 'red', fontSize: '20px', cursor: 'pointer' }} onClick={() => setIsModalOpenDelete(true)} />
+                    <EditOutlined style={{ color: 'orange', fontSize: '20px', cursor: 'pointer' }} onClick={handleDetailsUser} />
                 </div>
             ),
         },
