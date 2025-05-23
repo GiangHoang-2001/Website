@@ -7,7 +7,7 @@ import { axiosJWT } from "./UserService";
 
 export const createOrder = async (data, access_token) => {
     console.log('access_token', access_token);
-    const res = await axiosJWT.post(`/api/order/create`, data, {
+    const res = await axiosJWT.post(`${process.env.REACT_APP_API_URL}/api/order/create`, data, {
         headers: {
             token: `Bearer ${access_token}`,
         }
@@ -16,7 +16,7 @@ export const createOrder = async (data, access_token) => {
 }
 
 export const getOrderByUserId = async (id, access_token) => {
-    const res = await axiosJWT.get(`/api/order/get-all-order/${id}`, {
+    const res = await axiosJWT.get(`${process.env.REACT_APP_API_URL}/api/order/get-all-order/${id}`, {
         headers: {
             token: `Bearer ${access_token}`,
         }
@@ -25,7 +25,7 @@ export const getOrderByUserId = async (id, access_token) => {
 }
 
 export const getDetailsOrder = async (id, access_token) => {
-    const res = await axiosJWT.get(`/api/order/get-details-order/${id}`, {
+    const res = await axiosJWT.get(`${process.env.REACT_APP_API_URL}/api/order/get-details-order/${id}`, {
         headers: {
             token: `Bearer ${access_token}`,
         }
@@ -34,7 +34,7 @@ export const getDetailsOrder = async (id, access_token) => {
 }
 
 export const cancelOrder = async (id, access_token, orderItems) => {
-    const res = await axiosJWT.delete(`/api/order/cancel-order/${id}`, { data: orderItems }, {
+    const res = await axiosJWT.delete(`${process.env.REACT_APP_API_URL}/api/order/cancel-order/${id}`, { data: orderItems }, {
         headers: {
             token: `Bearer ${access_token}`,
         }
@@ -43,7 +43,7 @@ export const cancelOrder = async (id, access_token, orderItems) => {
 }
 
 export const getAllOrder = async (access_token) => {
-    const res = await axiosJWT.get(`/api/order/get-all-order`, {
+    const res = await axiosJWT.get(`${process.env.REACT_APP_API_URL}/api/order/get-all-order`, {
         headers: {
             token: `Bearer ${access_token}`,
         }
