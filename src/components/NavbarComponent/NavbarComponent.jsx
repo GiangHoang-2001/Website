@@ -43,14 +43,7 @@ const NavbarComponent = () => {
         }
     }
 
-    return (
-        <div>
-            <WrapperLableText>Lable</WrapperLableText>
-            <WrapperContent>
-                {renderContent('text', ['TU LANH', 'TV', 'MAY GIAT'])}
-            </WrapperContent>
-        </div>
-    )
+
 }
 
 export default NavbarComponent

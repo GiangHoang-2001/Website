@@ -156,6 +156,7 @@ const OrderAdmin = () => {
                 <TableComponent
                     columns={columns}
                     isLoading={isLoadingOrders}
+                    rowKey="key"
                     data={dataTable}
                 />
 

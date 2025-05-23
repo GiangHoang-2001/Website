@@ -90,7 +90,6 @@ export const convertDataChart = (data, type) => {
                 object[opt[type]] += 1
             }
         })
-        console.log('object', object);
         const results = Array.isArray(Object.keys(object)) && Object.keys(object).map((item) => {
             return {
                 name: orderContant.payment[item],

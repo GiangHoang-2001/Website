@@ -320,7 +320,7 @@ const PaymentPage = () => {
                                     styletextbutton={{ color: 'fff', fontSize: '15px', fontWeight: '700' }}
                                 >
                                 </ButtonComponent>
-                                )
+
 
                             </div>
                         </WrapperRight>

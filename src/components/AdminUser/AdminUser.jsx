@@ -72,7 +72,11 @@ const AdminUser = () => {
         return UserService.deleteUser(id, token);
     });
 
-    const getAllUsers = async () => UserService.getAllUser(user?.access_token);
+    const getAllUsers = async () => {
+        const response = await UserService.getAllUser(user?.access_token);
+        return response;
+    };
+
 
 
     const fetchGetDetailsUser = async (rowSelected) => {
@@ -300,6 +304,7 @@ const AdminUser = () => {
     ];
     const dataTable = Array.isArray(users?.data) ? users.data.map((user) => ({ ...user, key: user._id, isAdmin: user.isAdmin ? 'TRUE' : 'FALSE' })) : [];
 
+
     return (
         <div>
             <WrapperHeader>Quản lý người dùng</WrapperHeader>
@@ -309,6 +314,7 @@ const AdminUser = () => {
                     columns={columns}
                     isLoading={isLoadingUsers}
                     data={dataTable}
+                    rowKey="key"
                     rowSelectedKeys={rowSelectedKeys}
                     setRowSelectedKeys={setRowSelectedKeys}
                     onRow={(record) => ({ onClick: () => setRowSelected(record._id) })}

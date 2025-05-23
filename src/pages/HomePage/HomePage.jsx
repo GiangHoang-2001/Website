@@ -22,12 +22,7 @@ const HomePage = () => {
     const fetchProductAll = async (context) => {
         const limit = context?.queryKey && context?.queryKey[1];
         const search = context?.queryKey && context?.queryKey[2];
-        console.log('API_URL:', process.env.REACT_APP_API_URL);
-
-        console.log('Fetching products with limit:', limit, 'and search:', search);  // Log thêm để xem hàm có chạy
-
         const res = await ProductService.getAllProduct(search, limit);
-        console.log('Product Response:', res);  // Log dữ liệu API trả về
         return res;
     };
 
@@ -46,52 +41,55 @@ const HomePage = () => {
         fetchAllTypeProduct()
     }, [])
     return (
-        <Loading isLoading={isLoading || loading}>
-            <div style={{ width: '1270px', margin: '0 auto' }}>
-                <WrapperTypeProduct>
-                    {typeProducts.map((item) => {
-                        return (
-                            <TypeProduct name={item} key={item} />
-                        )
-                    })}
-                </WrapperTypeProduct>
-            </div>
-            <div className='body' style={{ width: '100%', background: '#efefef' }}>
-                <div id="container" style={{ height: '1000px', width: '1270px', margin: '0 auto' }}>
-                    <SliderComponent arrImages={[slider1, slider2, slider3]} />
-                    <WrapperProducts>
-                        {products?.data?.map((product) => {
+        <div>
+            <Loading isLoading={isLoading || loading}>
+                <div style={{ width: '1270px', margin: '0 auto' }}>
+                    <WrapperTypeProduct>
+                        {typeProducts.map((item) => {
                             return (
-                                <CardComponent
-                                    key={product._id}
-                                    countInStock={product.countInStock}
-                                    description={product.description}
-                                    image={product.image}
-                                    name={product.name}
-                                    price={product.price}
-                                    rating={product.rating}
-                                    type={product.type}
-                                    discount={product.discount}
-                                    selled={product.selled}
-                                    id={product._id}
-                                />
+                                <TypeProduct name={item} key={item} />
                             )
                         })}
-                    </WrapperProducts>
-                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-                        <WrapperButtonMore textbutton={isPreviousData ? 'Load more' : "Xem thêm"} type="outline" styleButton={{
-                            border: '1px solid rgb(11,116,229)', color: `${products?.total === products?.data?.length ? '#ccc' : 'rgb(11,116,229)'}`,
-                            width: '240px', height: '38px', borderRadius: '4px'
-                        }}
-                            disabled={products?.total === products?.data?.length || products?.totalPage === 1}
-                            styletextbutton={{ fontWeight: 500, color: products?.total === products?.data?.length && '#fff' }}
-                            onClick={() => setLimit((prev) => prev + 6)} />
+                    </WrapperTypeProduct>
+                </div>
+                <div className='body' style={{ width: '100%', background: '#efefef' }}>
+                    <div id="container" style={{ width: '1270px', margin: '0 auto' }}>
+                        <SliderComponent arrImages={[slider1, slider2, slider3]} />
+                        <WrapperProducts>
+                            {products?.data?.map((product) => {
+                                return (
+                                    <CardComponent
+                                        key={product._id}
+                                        countInStock={product.countInStock}
+                                        description={product.description}
+                                        image={product.image}
+                                        name={product.name}
+                                        price={product.price}
+                                        rating={product.rating}
+                                        type={product.type}
+                                        discount={product.discount}
+                                        selled={product.selled}
+                                        id={product._id}
+                                    />
+                                )
+                            })}
+                        </WrapperProducts>
+                        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                            <WrapperButtonMore textbutton={isPreviousData ? 'Load more' : "Xem thêm"} type="outline" styleButton={{
+                                border: '1px solid rgb(11,116,229)', color: `${products?.total === products?.data?.length ? '#ccc' : 'rgb(11,116,229)'}`,
+                                width: '240px', height: '38px', borderRadius: '4px'
+                            }}
+                                disabled={products?.total === products?.data?.length || products?.totalPage === 1}
+                                styletextbutton={{ fontWeight: 500, color: products?.total === products?.data?.length && '#fff' }}
+                                onClick={() => setLimit((prev) => prev + 6)} />
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-        </Loading>
+            </Loading>
+
+        </div>
     )
 }
 
