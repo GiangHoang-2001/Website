@@ -235,7 +235,7 @@ const PaymentPage = () => {
                                     <Lable>Chọn phương thức giao hàng</Lable>
                                     <WrapperRadio onChange={handleDelivery} value={delivery}>
                                         <Radio value="fast"><span style={{ color: '#ea8500', fontWeight: 'bold' }}>FAST</span>Giao hàng tiết kiệm</Radio>
-                                        <Radio value="gojek"><span style={{ color: '#ea8500', fontWeight: 'bold' }}>GO_JEK</span>Giao hàng tiết kiệm</Radio>
+                                        <Radio value="gojek"><span style={{ color: '#ea8500', fontWeight: 'bold' }}>GO_JEK</span>Giao hàng nhanh</Radio>
                                     </WrapperRadio>
                                 </div>
                             </WrapperInfo>
